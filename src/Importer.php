@@ -130,6 +130,9 @@ class Importer implements ToModel, WithValidation, WithHeadingRow, WithBatchInse
         $data = [];
 
         foreach ($this->attributes as $field) {
+            // Skip array attributes
+            if(!is_string($field)) continue;
+
             $data[$field] = null;
 
             foreach ($this->attribute_map as $column => $attribute) {
